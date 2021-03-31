@@ -33,25 +33,27 @@ loadBooks = () => {
 renderHTML = (data) => {
     for(let ele of data) {
         const x = `
-                        <div class="col-6 ele">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">${ele[0]}(${ele[1].count})</h5>
-                                    <button onclick="deleteWord(${ele.num})" type="button" class="btn btn-danger">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                        `
+            <div class="col-6 ele">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${ele[0]}(${ele[1].count})</h5>
+                        <button onclick="deleteWord('${ele[0]}')" type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+            `
         place.innerHTML = place.innerHTML + x;
     }
 }
 
 
-deleteWord = (num) => {
+deleteWord = (word) => {
     const xhttp = new XMLHttpRequest();
 
-    xhttp.open("DELETE", `http://localhost:3000/book/${num}`, false);
+    xhttp.open("DELETE", `http://localhost:3000/delete/${word}`, false);
     xhttp.send();
-
-    location.reload();
+    setTimeout(function (){
+        location.reload();
+        loadBooks();
+    },0)
 }

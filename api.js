@@ -28,15 +28,19 @@ app.post('/', (req, res) => {
     words.push(result);
 });
 
-app.delete('/book/:num', (req, res) => {
-    const num = req.params.num;
-
-    words = words.filter(i => {
-        if (i.num !== num) {
-            return true;
+app.delete('/delete/:word', (req, res) => {
+    const word = req.params.word;
+    words.every(ele => {
+        if(ele.word === word){
+            const index = words.indexOf(ele);
+            if(index > -1){
+                words.splice(index, 1);
+            }
+            return false;
         }
-        return false;
-    });
+        return true;
+    })
+    res.send(location.reload());
 });
 
 app.listen(port, () => console.log(`Please go to http://localhost:${port}`));
