@@ -12,6 +12,6 @@ I use Node.js and Express.js for this App. If you haven't those tools installed 
 ![terminal](https://user-images.githubusercontent.com/65114423/113116671-f2c29280-920d-11eb-814e-641539896ee1.png)
 
 
-5 stap // Go to this link http://localhost:3000 after that in your browser you have to see a working App.  ![app](https://user-images.githubusercontent.com/65114423/113117021-5baa0a80-920e-11eb-8164-c58bf9821c53.png)
+5 step // Go to this link http://localhost:3000 after that in your browser you have to see a working App.  ![app](https://user-images.githubusercontent.com/65114423/113117021-5baa0a80-920e-11eb-8164-c58bf9821c53.png)
 
 Good luck =)
