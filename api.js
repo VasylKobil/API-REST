@@ -24,10 +24,7 @@ app.get('/', function(req, res){
 
 app.post('/', (req, res) => {
     const word = req.body;
-    const result = {
-        num: Math.floor(100000 + Math.random() * 900000),
-        word
-    };
+    const result = {word: word.word}
     words.push(result);
 });
 
@@ -40,8 +37,6 @@ app.delete('/book/:num', (req, res) => {
         }
         return false;
     });
-
-    // res.send('Book is deleted');
 });
 
 app.listen(port, () => console.log(`Please go to http://localhost:${port}`));

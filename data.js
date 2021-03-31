@@ -13,28 +13,37 @@ loadBooks = () => {
         if(ele){
             place.innerHTML = '';
         }
-
+        const map = new Map();
         for (let ele of words) {
-            if(ele.word.word === ""){continue}
+            if(ele.word === ""){continue}
             let count = 0;
             for(let eleIn of words){
-                if(ele.word.word === eleIn.word.word){
+                if(ele.word === eleIn.word){
                     count++;
                 }
             }
-                const x = `
+            if(!map.has(ele.word)){
+                map.set(ele.word, {count: count})
+            }
+        }
+        renderHTML(map);
+    }, 0)
+}
+
+renderHTML = (data) => {
+    for(let ele of data) {
+        const x = `
                         <div class="col-6 ele">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">${ele.word.word}(${count})</h5>
+                                    <h5 class="card-title">${ele[0]}(${ele[1].count})</h5>
                                     <button onclick="deleteWord(${ele.num})" type="button" class="btn btn-danger">Delete</button>
                                 </div>
                             </div>
                         </div>
                         `
-                place.innerHTML = place.innerHTML + x;
-        }
-    }, 0)
+        place.innerHTML = place.innerHTML + x;
+    }
 }
 
 
