@@ -1,11 +1,11 @@
 const ele = document.getElementsByClassName('ele');
-const place = document.getElementById('words');
+const place = document.getElementById('pass');
 
 loadBooks = () => {
     setTimeout( function (){
         const xhttp = new XMLHttpRequest();
 
-        xhttp.open("GET", "http://localhost:3000/words/", false);
+        xhttp.open("GET", "http://localhost:3000/api/words/", false);
         xhttp.send();
 
         const words = JSON.parse(xhttp.responseText);
@@ -47,13 +47,12 @@ renderHTML = (data) => {
 }
 
 
-deleteWord = (word) => {
-    const xhttp = new XMLHttpRequest();
-
-    xhttp.open("DELETE", `http://localhost:3000/delete/${word}`, false);
-    xhttp.send();
-    setTimeout(function (){
-        location.reload();
-        loadBooks();
-    },0)
+deleteWord = async (word) => {
+    await fetch(`http://localhost:3000/delete/${word}`, {
+        method: 'DELETE'
+    }).then((res) => {
+        if(res.status === 200){
+            loadBooks();
+        }
+    })
 }

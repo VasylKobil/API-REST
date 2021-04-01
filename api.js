@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-app.get('/words', (req, res) => {
+app.get('/api/words', (req, res) => {
     res.json(words);
 })
 
@@ -28,7 +28,7 @@ app.post('/', (req, res) => {
     words.push(result);
 });
 
-app.delete('/delete/:word', (req, res) => {
+app.delete('/delete/:word', (req, res,next) => {
     const word = req.params.word;
     words.every(ele => {
         if(ele.word === word){
@@ -40,7 +40,7 @@ app.delete('/delete/:word', (req, res) => {
         }
         return true;
     })
-    res.send(location.reload());
+    res.send('OK');
 });
 
 app.listen(port, () => console.log(`Please go to http://localhost:${port}`));
